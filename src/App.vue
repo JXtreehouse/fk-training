@@ -1,5 +1,9 @@
 <template>
   <div class="g-main">
+   
+    <div class="g-left">
+      <button>menu</button>
+    </div>
     <div class="g-center">
       <div class="m-container1">
         <view-container />
@@ -8,11 +12,8 @@
         <view-container />
       </div>
     </div>
-    <div class="g-left">
-      <button>menu</button>
-    </div>
     <div class="g-right">
-      <button-component>保存</button-component>
+      <button-component class="jz-button-primary">保存</button-component>
     </div>
   </div>
 </template>

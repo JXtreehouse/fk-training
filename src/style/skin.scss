@@ -1,0 +1,12 @@
+$main-color: rgb(59, 150, 236);
+$vice-color: white;
+
+.jz-button-primary {
+  background-color: $main-color;
+  color: white;
+  &:hover {
+    background-color: $vice-color;
+    color: black;
+    border-color: black;
+  }
+}
