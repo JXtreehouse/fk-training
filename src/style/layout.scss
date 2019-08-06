@@ -1,0 +1,30 @@
+.g-main {
+   overflow: hidden;
+   padding: 0 100px 0 100px;
+   
+   .g-left,
+   .g-right,
+   .g-center {
+    position: relative;
+    float: left;
+   }
+
+  .g-left {
+    margin-left: -100%;
+    left: -100px;
+    width: 100px;
+  }
+  .g-center {
+    width: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-items: center;
+    align-content: center;
+  }
+  .g-right {
+    width: 100px;
+    right: -100px;
+    margin-left: -100px;
+  }
+}

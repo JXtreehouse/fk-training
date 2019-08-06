@@ -1,4 +1,6 @@
+import './style/main.scss';
 import App from './App.vue';
+
 
 new Vue({
   render: (h) => h(App),
