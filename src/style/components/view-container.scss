@@ -1,5 +1,13 @@
 .u-view-container {
   height: 300px;
   width: 300px;
-  border: 1px dashed $main-color;
+  border: 1px dashed $primary-color;
+  position: relative;
+}
+
+.u-view-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

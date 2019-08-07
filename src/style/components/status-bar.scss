@@ -1,0 +1,40 @@
+.u-status-bar {
+
+  height: 40px;
+  background-color: $primary-color;
+  display: flex;
+  justify-content: space-between;
+  
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      .nav-button {
+        height: 100%;
+        line-height: 40px;
+        padding: 0 7px;
+        cursor: pointer;
+        span {
+          font-size: 14px;
+          color: $primary-vice-color;
+        }
+      }
+    }
+
+    .z-selected {
+      position: relative;
+      &::after {
+        position: absolute;
+        content: '';
+        border: 5px solid transparent;
+        border-bottom: 5px solid $primary-vice-color;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+}

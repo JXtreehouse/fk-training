@@ -1,12 +1,30 @@
-$main-color: rgb(59, 150, 236);
-$vice-color: white;
+$primary-color: rgb(84, 108, 214);
+$primary-vice-color: white;
+
+$secondary-color: green;
+$secondary-vice-color: black;
+$shadow-color: rgba(0,0,0,0.2);
 
 .jz-button-primary {
-  background-color: $main-color;
-  color: white;
-  &:hover {
-    background-color: $vice-color;
-    color: black;
-    border-color: black;
+  background-color: $primary-color;
+  color: $primary-vice-color;
+  &:hover,
+  &:active {
+    background-color: $primary-vice-color;
+    color: $primary-color;
+    border-color: $primary-color;
   }
 }
+
+.jz-button-outline-primary {
+  background-color: $primary-vice-color;
+    color: $primary-color;
+    border-color: $primary-color;
+  &:hover,
+  &:active {
+    background-color: $primary-color;
+    color: $primary-vice-color;
+    
+  }
+}
+

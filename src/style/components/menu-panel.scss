@@ -1,0 +1,13 @@
+.u-menu-panel {
+  width: 300px;
+  min-height: 300px;
+  background-color: white;
+  z-index: 500;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px 3px $shadow-color;
+  overflow: hidden;
+
+  .menu-content {
+    
+  }
+}

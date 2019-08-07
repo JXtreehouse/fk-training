@@ -1,9 +1,10 @@
 .g-main {
    display: flex;
-   
+   margin: 20px 10px;
    .g-center {
      flex: 1;
      display: flex;
      justify-content: center;
+     transition: all ease-in 0.3s;
    }
 }
