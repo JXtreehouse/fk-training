@@ -14,24 +14,30 @@
           <div v-show="navIndex===0" class="u-content1">
             <collapse-panel :title="'常用'">
               <div class="inner">
-                <module-button>
+                <module-button 
+                  name="text"
+                  @click="handleModuleButtonClick"
+                >
                   <div class="icon">
                     <md-create-icon 
                       class="u-icon u-icon-sp1"
-                      :h="'40'"
-                      :w="'40'"
+                      :h="'30'"
+                      :w="'30'"
                     />
                   </div>
                   <div class="title">
                     <span>文本</span>
                   </div>
                 </module-button>
-                <module-button>
+                <module-button
+                  name="picture"
+                  @click="handleModuleButtonClick"
+                >
                   <div class="icon">
                     <md-image-icon   
                       class="u-icon u-icon-sp1"
-                      :h="'40'"
-                      :w="'40'"
+                      :h="'30'"
+                      :w="'30'"
                     />
                   </div>
                   <div class="title">
@@ -42,12 +48,15 @@
             </collapse-panel>
             <collapse-panel :title="'互动'">
               <div class="inner">
-                <module-button>
+                <module-button
+                  name="form"
+                  @click="handleModuleButtonClick"
+                >
                   <div class="icon">
                     <md-listbox-icon   
                       class="u-icon u-icon-sp1"
-                      :h="'40'"
-                      :w="'40'"
+                      :h="'30'"
+                      :w="'30'"
                     />
                   </div>
                   <div class="title">
@@ -90,6 +99,9 @@ export default {
   methods: {
     handleNavClick(index) {
       this.navIndex = index;
+    },
+    handleModuleButtonClick(name) {
+      this.$emit('module-button-click', name);
     }
   }
 }

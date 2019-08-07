@@ -13,6 +13,7 @@ $light-border-color: #dddddd;
   &:active {
     background-color: $primary-vice-color;
     color: $primary-color;
+    
     border-color: $primary-color;
   }
 }
@@ -25,6 +26,11 @@ $light-border-color: #dddddd;
   &:active {
     background-color: $primary-color;
     color: $primary-vice-color;
+
+    .u-icon-sp1 {
+      fill: $primary-vice-color;
+
+    }
     
   }
 }

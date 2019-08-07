@@ -48,16 +48,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: $primary-vice-color;
 
   cursor: pointer;
   
-  &:not(:nth-child(4n)) {
-    border-right: 1px solid $light-border-color;
-  }
+  border: 1px solid $light-border-color;
+  margin: -1px;
+  margin-right: 0px;
+
 
   .icon {
     text-align: center;
-    padding-top: 10px;
+    padding-top: 15px;
   }
 
   .title {
