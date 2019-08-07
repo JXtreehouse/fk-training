@@ -14,7 +14,7 @@
           <div v-show="navIndex===0" class="u-content1">
             <collapse-panel :title="'常用'">
               <div class="inner">
-                <div class="u-module-button">
+                <module-button>
                   <div class="icon">
                     <md-create-icon 
                       class="u-icon u-icon-sp1"
@@ -25,8 +25,8 @@
                   <div class="title">
                     <span>文本</span>
                   </div>
-                </div>
-                <div class="u-module-button">
+                </module-button>
+                <module-button>
                   <div class="icon">
                     <md-image-icon   
                       class="u-icon u-icon-sp1"
@@ -37,12 +37,12 @@
                   <div class="title">
                     <span>图片</span>
                   </div>
-                </div>
+                </module-button>
               </div>
             </collapse-panel>
             <collapse-panel :title="'互动'">
               <div class="inner">
-                <div class="u-module-button">
+                <module-button>
                   <div class="icon">
                     <md-listbox-icon   
                       class="u-icon u-icon-sp1"
@@ -53,7 +53,7 @@
                   <div class="title">
                     <span>在线表单</span>
                   </div>
-                </div>
+                </module-button>
               </div>
             </collapse-panel>
           </div>
@@ -68,12 +68,14 @@
 import StatusBar from './StatusBar.vue';
 import CollapsePanel from './CollapsePanel.vue';
 import MdCreateIcon from 'vue-ionicons/dist/md-create.vue';
-import MdImageIcon from 'vue-ionicons/dist/md-image.vue'
-import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue'
+import MdImageIcon from 'vue-ionicons/dist/md-image.vue';
+import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue';
+import ModuleButton from './ModuleButton.vue';
 
 export default {
   components: {
     'status-bar': StatusBar,
+    'module-button': ModuleButton,
     'collapse-panel': CollapsePanel,
     'md-create-icon': MdCreateIcon,
     'md-image-icon': MdImageIcon,
