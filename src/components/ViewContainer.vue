@@ -5,7 +5,7 @@
       v-if="!menuPanelTriggered"
       @click="onClick">
       <span>
-        <ios-copy-icon class="u-icon-inline btn-icon-sp1"></ios-copy-icon>
+        <ios-copy-icon class="u-icon-inline u-icon-sp1"></ios-copy-icon>
         添加模块
       </span>
     </button-component>

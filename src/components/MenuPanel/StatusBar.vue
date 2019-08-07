@@ -4,7 +4,7 @@
       <button
       @click="onMenuButtonClick" 
       class="u-menu-btn u-menu-btn-sp2">
-      <md-app-icon :h="'20'" :w="'20'" class="btn-icon"/>
+      <md-app-icon :h="'20'" :w="'20'" class="u-icon"/>
     </button>
     </span>
     <ul class="nav-list">
@@ -23,7 +23,7 @@
       <button
       @click="onMenuButtonClick" 
       class="u-menu-btn u-menu-btn-sp2">
-      <md-close-icon :h="'20'" :w="'20'" class="btn-icon"/>
+      <md-close-icon :h="'20'" :w="'20'" class="u-icon"/>
     </button>
     </span>
   </div>
@@ -54,7 +54,6 @@ export default {
       this.$emit('close-click');
     },
     onMenuButtonClick() {
-      console.log('click');
       this.$emit('menu-button-click')
     }
   }

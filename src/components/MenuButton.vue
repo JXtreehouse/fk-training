@@ -3,7 +3,7 @@
     <button
       @click="onClick" 
       class="u-menu-btn u-menu-btn-circle u-menu-btn-shadow u-menu-btn-sp1">
-      <md-app-icon :h="'20'" :w="'20'" class="btn-icon-sp1"/>
+      <md-app-icon :h="'20'" :w="'20'" class="u-icon-sp1"/>
     </button>
   </div>
 </template>

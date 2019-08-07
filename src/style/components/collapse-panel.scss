@@ -1,0 +1,53 @@
+.u-collapse-panel {
+  overflow: hidden;
+  .show-content {
+    height: 35px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    
+    .title {
+      position: relative;
+      line-height: 35px;
+      margin-left: 20px;
+      user-select: none;
+      cursor: pointer;
+
+      font-size: 14px;
+      color: $primary-color;
+      &::after {
+        position: absolute;
+        content: '';
+        border: 5px solid transparent;
+        border-left: 5px solid $primary-color;
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all ease-in .1s;
+      }
+    }
+
+    .z-opened {
+      &::after {
+        transform-origin: 4px 2px;
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .collapse-content {
+    max-height: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid $light-border-color;
+    // transition: max-height ease-out .1s, border-bottom ease-in .1s;
+    
+    
+    &.z-collapsed {
+      max-height: 0;
+      border-bottom: transparent;
+    }
+
+    .inner {
+      display: flex;
+    }
+  }
+}
+

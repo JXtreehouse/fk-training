@@ -34,10 +34,37 @@
   width: 40px;
 }
 
-.btn-icon {
+.u-icon {
   fill: $primary-vice-color;
 }
 
-.btn-icon-sp1 {
+.u-icon-sp1 {
   fill: $primary-color;
+}
+
+.u-module-button {
+  height: 80px;
+  width: 75px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  
+  &:not(:nth-child(4n)) {
+    border-right: 1px solid $light-border-color;
+  }
+
+  .icon {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .title {
+    text-align: center;
+    padding-top: 5px;
+    color: $primary-color;
+    font-size: 12px;
+    user-select: none;
+  }
 }
