@@ -1,16 +1,20 @@
 <template>
   <div class="u-module" :style="style">
-    <div class="u-picture-module"></div>
+    <div class="u-picture-module" ></div>
   </div>
 </template>
 
 <script>
 import Draggable from '../../mixins/Draggable';
+import Resizable from '../../mixins/Resizable';
 
 export default {
-  mixins: [Draggable({
+  mixins: [
+    Draggable({
     zIndex: '1000'
-  })],
+    }),
+    Resizable(),
+  ],
   data() {
     return {
       height: '100px',

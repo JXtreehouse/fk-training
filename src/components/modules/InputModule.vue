@@ -1,40 +1,47 @@
 <template>
-  <div class="u-module" :style="style">
-    <input :v-model="text" type="text" placeholder="在这里输入内容" maxlength="30"/>
+  <div class="u-module" data-module-name="input-module" :style="style">
+    <div 
+      class="input-area"
+      ref="inputArea"
+      @dblclick="handleDoubleClick">
+      {{text}}
+    </div>
   </div>
 </template>
 
 <script>
 import Draggable from '../../mixins/Draggable';
+import Resizable from '../../mixins/Resizable';
 
 export default {
-  mixins: [Draggable({
-    zIndex: '1000'
-  })],
+  mixins: [
+    Draggable({
+      zIndex: '1000'
+    }),
+    Resizable(),
+  ],
   data() {
     return {
-      text: '',
-      height: 'auto',
-      width: 'auto',
-      paddingLeft: '',
-      paddingTop: '',
-      fontSize: '',
-      color: '',
-      zIndex: '',
-    }
-  },
-  computed: {
-    style() {
-      return {
-        height: this.height,
-        width: this.width,
-        paddingLeft: this.paddingLeft,
-        paddingTop: this.paddingTop,
-        fontSize: this.fontSize,
-        color: this.color,
-        zIndex: this.zIndex,
+      text: '你好',
+      style: {
+        height: 'auto',
+        width: 'auto',
+        paddingLeft: '',
+        paddingTop: '',
+        fontSize: '',
+        color: '',
+        zIndex: '',
       }
     }
+  },
+  methods: {
+    handleDoubleClick() {
+      const dom = this.$refs.inputArea;
+      if(!dom) throw Error('inputArea not exist');
+
+      dom.setAttribute('contenteditable', true);
+    }
   }
+
 }
 </script>

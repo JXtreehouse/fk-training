@@ -2,17 +2,17 @@
   <div class="u-container-module">
     <div :v-if="title" class="module-title">自由容器模块</div>
     <div class="free-container-module">
-      <template v-for="(name, index) in modules">
-        <component :is="name" :key="index"></component>
+      <template v-for="(m) in modules">
+        <component :is="m.type" :key="m.id"></component>
       </template>
     </div>
   </div>
 </template>
 
 <script>
+import uniqueString from 'unique-string';
 import InputModule from './InputModule.vue';
 import PictureModule from './PictureModule.vue';
-
 import Droppable from '../../mixins/Droppable';
 export default {
   mixins: [Droppable({
@@ -20,7 +20,12 @@ export default {
     greedy: true,
     drop: function(event, ui) {
       const name = ui.draggable[0].getAttribute('data-module-name');
-      this.addModule(name);
+      console.log(name)
+      this.addModule({
+        type: name,
+        id: uniqueString(),
+        modules: [],
+      });
   }})],
   components: {
     'input-module': InputModule,
@@ -28,20 +33,18 @@ export default {
   },
   props: {
     title: String,
-  },
-
-  data() {
-    return {
-      modules: [],
-    }
+    modules: Array,
+    id: String,
   },
   methods: {
-    addModule(name) {
-      if(name === 'input-module' || name === 'picture-module') {
-        this.modules.push(name);
-        this.$emit('add-module-sucess');
+    addModule(m) {
+      if (m.type === 'input-module' || m.type === 'picture-module') {
+        this.$emit('can-add-module', {
+          m: m,
+          targetId: this.id,
+        })
       } else {
-        this.$emit('add-module-failure', name);
+        this.$emit('throw-module', m);
       }
     }
   }

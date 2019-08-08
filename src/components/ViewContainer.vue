@@ -9,8 +9,16 @@
         添加模块
       </span>
     </button-component>
-    <template v-for="(name, index) in modules" >
-      <component :is="name" :key="index" @add-module-failure="handleAddModuleFailure"></component>
+    <template v-for="(m) in modules" >
+      <component
+        :is="m.type"
+        :id="m.id"
+        :key="m.id"
+        :modules="m.modules"
+        @can-add-module="handleCanAddModule"
+        @throw-module="handleThrowModule"
+        >
+      </component>
     </template>
   </div>
 </template>
@@ -19,24 +27,25 @@
 import IosCopyIcon from 'vue-ionicons/dist/ios-copy.vue';
 import Sortable from '../mixins/Sortable';
 import Droppable from '../mixins/Droppable';
-import InputModule from './modules/InputModule.vue';
-import PictureModule from './modules/PictureModule.vue';
+import uniqueString from 'unique-string';
 import FormModule from './modules/FormModule.vue';
 import FreeContainerModule from './modules/FreeContainerModule.vue';
-
+import { findModuleById } from '../utils';
 export default {
   mixins: [Droppable({
     accept: '.u-module-button',
     greedy: true,
     drop: function(event, ui) {
       const name = ui.draggable[0].getAttribute('data-module-name');
-      this.addModule(name);
+      this.addModule({
+        type: name,
+        id: uniqueString(),
+        modules: [],
+      });
     },
   }), Sortable({ revert: true })],
   components: {
     'ios-copy-icon': IosCopyIcon,
-    'input-module': InputModule,
-    'picture-module': PictureModule,
     'form-module': FormModule,
     'free-container-module': FreeContainerModule,
   },
@@ -55,16 +64,26 @@ export default {
     onClick() {
       this.$emit('click', this.name);
     },
-    addModule(name) {
-      if(name === 'free-container-module' || name === 'form-module') {
-        this.modules.push(name);
-        this.$emit('add-module-sucess');
-      } else {
-        this.modules.push('free-container-module');
+    addModule(m) {
+      const target = this.modules;
+      if(m.type === 'free-container-module' || m.type === 'form-module') {
+        target.push(m);
+      } else if (m.type === 'input-module' || m.type === 'picture-module') {
+        target.push({
+          type: 'free-container-module',
+          id: uniqueString(),
+          modules: [m]
+        })
       }
     },
-    handleAddModuleFailure(name) {
-      this.addModule(name)
+    handleCanAddModule({
+      m, targetId
+    }) {
+      const target = findModuleById(this.modules, targetId);
+      target.modules.push(m);
+    },
+    handleThrowModule(m) {
+      this.addModule(m);
     }
   }
 }
