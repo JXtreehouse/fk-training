@@ -15,7 +15,7 @@
             <collapse-panel :title="'常用'">
               <div class="inner">
                 <module-button 
-                  name="text"
+                  name="input-module"
                   @click="handleModuleButtonClick"
                 >
                   <div class="icon">
@@ -30,7 +30,7 @@
                   </div>
                 </module-button>
                 <module-button
-                  name="picture"
+                  name="picture-module"
                   @click="handleModuleButtonClick"
                 >
                   <div class="icon">
@@ -44,12 +44,27 @@
                     <span>图片</span>
                   </div>
                 </module-button>
+                <module-button 
+                  name="free-container-module"
+                  @click="handleModuleButtonClick"
+                >
+                  <div class="icon">
+                    <md-square-outline-icon 
+                      class="u-icon u-icon-sp1"
+                      :h="'30'"
+                      :w="'30'"
+                    />
+                  </div>
+                  <div class="title">
+                    <span>自由容器</span>
+                  </div>
+                </module-button>
               </div>
             </collapse-panel>
             <collapse-panel :title="'互动'">
               <div class="inner">
                 <module-button
-                  name="form"
+                  name="form-module"
                   @click="handleModuleButtonClick"
                 >
                   <div class="icon">
@@ -80,6 +95,7 @@ import MdCreateIcon from 'vue-ionicons/dist/md-create.vue';
 import MdImageIcon from 'vue-ionicons/dist/md-image.vue';
 import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue';
 import ModuleButton from './ModuleButton.vue';
+import MdSquareOutlineIcon from 'vue-ionicons/dist/md-square-outline.vue'
 
 export default {
   components: {
@@ -89,6 +105,7 @@ export default {
     'md-create-icon': MdCreateIcon,
     'md-image-icon': MdImageIcon,
     'md-listbox-icon': MdListBoxIcon,
+    'md-square-outline-icon': MdSquareOutlineIcon,
   },
   data() {
     return {

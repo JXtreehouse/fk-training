@@ -1,8 +1,11 @@
 .u-view-container {
-  height: 300px;
-  width: 300px;
+  height: 350px;
+  width: 350px;
   border: 1px dashed $primary-color;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $light-background-color;
 }
 
 .u-view-btn {

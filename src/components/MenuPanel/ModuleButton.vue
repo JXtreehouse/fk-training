@@ -1,7 +1,9 @@
 <template>
   <div 
     class="u-module-button"
-    @click="() => onClick()">
+    @click="() => onClick()"
+    :data-module-name="name"
+    >
     <slot></slot>
     <div class="u-module-double"></div>
   </div>
