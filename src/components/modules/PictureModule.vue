@@ -7,15 +7,12 @@
 <script>
 import Draggable from '../../mixins/Draggable';
 import Resizable from '../../mixins/Resizable';
+import eventBus from '../../eventBus';
 
 export default {
   mixins: [
     Draggable({}),
-    Resizable({
-      resize(event, ui) {
-        console.log(ui);
-      }
-    }),
+    Resizable(),
   ],
   data() {
     return {
@@ -23,9 +20,7 @@ export default {
     }
   },
   methods: {
-    onChange() {
-      this.$emit('change', information)
-    }
+    
   }
 }
 </script>

@@ -9,7 +9,6 @@ export default function Droppable(opts) {
     mounted() {
       const self = this;
       const options = bindFunctions(opts, self);
-      console.log(options)
       const root = options && options.target ? options.target() : this.$el;
       if(!root) throw Error('draggle root not exist');
       this.$root = $(root);

@@ -1,5 +1,5 @@
 <template>
-  <div class="u-container-module" :style="style">
+  <div class="u-container-module">
     <div class="module-title">表单模块</div>
     <form class="u-form-module">
       <div class="form-title">title</div>
@@ -49,15 +49,6 @@ export default {
         live: '',
         advice: '',
       },
-      style: {
-        height: 'auto',
-        width: '100%',
-        paddingLeft: '',
-        paddingTop: '',
-        fontSize: '',
-        color: '',
-        zIndex: '',
-      }
     }
   },
 }

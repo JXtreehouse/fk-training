@@ -1,3 +1,5 @@
+import uniqueString from 'unique-string';
+
 export function bindFunctions(obj, context) {
   if(!obj) return;
   let result = {};
@@ -17,4 +19,54 @@ export function findModuleById(modules, id) {
   }
   console.log(modules, id);
   return null;
+}
+
+export function genarateModule(name) {
+  const result = {
+    type: name,
+    id: uniqueString(),
+    modules: [],
+  };
+
+  switch (name) {
+    case 'input-module':
+      result.information = {
+        width: '',
+        height: '',
+        left: '',
+        top: '',
+        fontSize: '',
+        text: '',
+        color: '',
+      }
+      break;
+    case 'picture-module':
+      result.information = {
+        width: '',
+        height: '',
+        left: '',
+        top: '',
+        link: '',
+      }
+      break;
+    case 'free-container-module':
+      result.information = {
+        height: '',
+      }
+      break;
+    case 'form-module':
+      result.information = {
+        name: '',
+        gender: '',
+        hobby: [],
+        live: '',
+        advice: '',
+      }
+      break;
+    default:
+      break;
+  }
+
+  return result;
+
 }

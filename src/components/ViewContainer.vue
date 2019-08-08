@@ -27,10 +27,10 @@
 import IosCopyIcon from 'vue-ionicons/dist/ios-copy.vue';
 import Sortable from '../mixins/Sortable';
 import Droppable from '../mixins/Droppable';
-import uniqueString from 'unique-string';
 import FormModule from './modules/FormModule.vue';
 import FreeContainerModule from './modules/FreeContainerModule.vue';
-import { findModuleById } from '../utils';
+import { findModuleById,genarateModule } from '../utils';
+
 export default {
   mixins: [Droppable({
     accept: '.u-module-button',
@@ -61,29 +61,21 @@ export default {
       this.$emit('click', this.name);
     },
     addModule(m) {
-      if (typeof m === 'string') 
-        m = { 
-          type: m,
-          id: uniqueString(),
-          modules: [],
-          information: {}
-        }
+      if (typeof m === 'string') {
+        m = genarateModule(m)
+      }
       const target = this.modules;
       if(m.type === 'free-container-module' || m.type === 'form-module') {
         target.push(m);
       } else if (m.type === 'input-module' || m.type === 'picture-module') {
-        target.push({
-          type: 'free-container-module',
-          id: uniqueString(),
-          modules: [m],
-          information: {}
-        })
+        const newContainer = genarateModule('free-container-module');
+        newContainer.modules.push(m);
+        target.push(newContainer)
       }
     },
     handleCanAddModule({
       m, targetId
     }) {
-      console.log('can add');
       const target = findModuleById(this.modules, targetId);
       target.modules.push(m);
     },
