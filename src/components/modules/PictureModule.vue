@@ -12,12 +12,20 @@ import eventBus from '../../eventBus';
 export default {
   mixins: [
     Draggable({}),
-    Resizable(),
+    Resizable({
+      stop(event, ui) {
+        console.log(ui);
+        eventBus.$emit('inf-change', { target: this.id, inf: {
+          width: ui.size.width,
+          height: ui.size.height,
+          left: ui.position.left,
+          top: ui.position.top,
+        }})
+      }
+    }),
   ],
-  data() {
-    return {
-    
-    }
+  props: {
+    id: String,
   },
   methods: {
     
