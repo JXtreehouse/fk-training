@@ -15,17 +15,14 @@ import Resizable from '../../mixins/Resizable';
 
 export default {
   mixins: [
-    Draggable({
-      zIndex: '1000'
-    }),
-    Resizable(),
-  ],
+    Draggable({}),
+    Resizable(),],
   data() {
     return {
       text: '你好',
       style: {
-        height: 'auto',
-        width: 'auto',
+        height: '20px',
+        width: '100px',
         paddingLeft: '',
         paddingTop: '',
         fontSize: '',

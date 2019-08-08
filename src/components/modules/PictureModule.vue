@@ -1,6 +1,6 @@
 <template>
-  <div class="u-module" :style="style">
-    <div class="u-picture-module" ></div>
+  <div class="u-module" :style="{ width: '100px', height: '100px', backgroundColor: 'red'}">
+    <div class="u-picture-module"></div>
   </div>
 </template>
 
@@ -10,31 +10,21 @@ import Resizable from '../../mixins/Resizable';
 
 export default {
   mixins: [
-    Draggable({
-    zIndex: '1000'
+    Draggable({}),
+    Resizable({
+      resize(event, ui) {
+        console.log(ui);
+      }
     }),
-    Resizable(),
   ],
   data() {
     return {
-      height: '100px',
-      width: '100px',
-      paddingLeft: '',
-      paddingTop: '',
-      backgroundColor: 'blue',
-      zIndex: '',
+    
     }
   },
-  computed: {
-    style() {
-      return {
-        height: this.height,
-        width: this.width,
-        paddingLeft: this.paddingLeft,
-        paddingTop: this.paddingTop,
-        backgroundColor: this.backgroundColor,
-        zIndex: this.zIndex,
-      }
+  methods: {
+    onChange() {
+      this.$emit('change', information)
     }
   }
 }

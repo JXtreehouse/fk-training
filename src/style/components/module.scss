@@ -4,17 +4,29 @@
 
 .u-container-module {
   background-color: white;
-  min-height: 200px;
+  // min-height: 200px;
   margin-bottom: 5px;
   overflow: hidden;
   .module-title {
     height: 40px;
+    width: 100%;
+    background-color: white;
     line-height: 40px;
     border-bottom: 1px solid $light-border-color;
     font-size: 14px;
     text-align: center;
-    z-index: 500;
+    // position: absolute;
   }
+  // .z-placeholder {
+  //   height: 40px;
+  //   width: 100%;
+  // }
+  .free-container-module {
+    position: relative;
+    min-height: 200px;
+    overflow: hidden;
+  }
+
 }
 
 .u-container-module:last-child {

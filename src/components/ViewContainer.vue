@@ -37,11 +37,7 @@ export default {
     greedy: true,
     drop: function(event, ui) {
       const name = ui.draggable[0].getAttribute('data-module-name');
-      this.addModule({
-        type: name,
-        id: uniqueString(),
-        modules: [],
-      });
+      this.addModule(name);
     },
   }), Sortable({ revert: true })],
   components: {
@@ -65,6 +61,13 @@ export default {
       this.$emit('click', this.name);
     },
     addModule(m) {
+      if (typeof m === 'string') 
+        m = { 
+          type: m,
+          id: uniqueString(),
+          modules: [],
+          information: {}
+        }
       const target = this.modules;
       if(m.type === 'free-container-module' || m.type === 'form-module') {
         target.push(m);
@@ -72,17 +75,20 @@ export default {
         target.push({
           type: 'free-container-module',
           id: uniqueString(),
-          modules: [m]
+          modules: [m],
+          information: {}
         })
       }
     },
     handleCanAddModule({
       m, targetId
     }) {
+      console.log('can add');
       const target = findModuleById(this.modules, targetId);
       target.modules.push(m);
     },
     handleThrowModule(m) {
+      console.log('throw module');
       this.addModule(m);
     }
   }

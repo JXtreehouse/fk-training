@@ -8,10 +8,12 @@ export default function Droppable(opts) {
   return {
     mounted() {
       const self = this;
-      const root = this.$el;
+      const options = bindFunctions(opts, self);
+      console.log(options)
+      const root = options && options.target ? options.target() : this.$el;
       if(!root) throw Error('draggle root not exist');
       this.$root = $(root);
-      this.$root.droppable(bindFunctions(opts, self));
+      this.$root.droppable(options);
     },
     beforeDestroy() {
       this.$root.droppable('destroy');

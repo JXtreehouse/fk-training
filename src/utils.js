@@ -11,10 +11,10 @@ export function bindFunctions(obj, context) {
 export function findModuleById(modules, id) {
   for (let i = 0; i <　modules.length; i++) {
     if (modules[i].id === id) return modules[i];
-    if (modules[i].modules) {
-      return findModuleById(modules[i].modules);
+    if (!modules[i].modules.length) {
+      return findModuleById(modules[i].modules, id);
     }
   }
-
+  console.log(modules, id);
   return null;
 }
