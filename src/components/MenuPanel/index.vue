@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="menu-status-bar">
         <status-bar
-          :navIndex="navIndex"
+          :navIndex="activeIndex"
           @menu-button-click="() => { this.$emit('menu-button-click') }"
           @close-click="() => { this.$emit('close-click') }"
           @nav-click="handleNavClick">
@@ -11,7 +11,7 @@
       </div>
       <div class="menu-content">
         <div class="inner">
-          <div v-show="navIndex===0" class="u-content1">
+          <div v-show="activeIndex===0" class="u-content1">
             <collapse-panel :title="'常用'">
               <div class="inner">
                 <module-button 
@@ -81,8 +81,10 @@
               </div>
             </collapse-panel>
           </div>
-          <div v-show="navIndex===1" class="u-content2">content2</div>
-          <div v-show="navIndex===2" class="u-content3">content3</div>
+          <div v-show="activeIndex===1" class="u-content2">
+            {{ target }}
+          </div>
+          <div v-show="activeIndex===2" class="u-content3">content3</div>
         </div>
       </div>
     </div>
@@ -97,7 +99,9 @@ import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue';
 import ModuleButton from './ModuleButton.vue';
 import MdSquareOutlineIcon from 'vue-ionicons/dist/md-square-outline.vue'
 
+
 export default {
+  name: 'MenuPanel',
   components: {
     'status-bar': StatusBar,
     'module-button': ModuleButton,
@@ -107,18 +111,24 @@ export default {
     'md-listbox-icon': MdListBoxIcon,
     'md-square-outline-icon': MdSquareOutlineIcon,
   },
+  props: {
+    activeIndex: Number,
+    target: Object,
+  },
   data() {
     return {
-      navIndex: 0,
       modules: ['常用', '互动']
     }
   },
   methods: {
     handleNavClick(index) {
-      this.navIndex = index;
+      this.$emit('nav-click', index);
     },
     handleModuleButtonClick(name) {
       this.$emit('module-button-click', name);
+    },
+    switchTab(number) {
+      this.navIndex = number;
     }
   }
 }

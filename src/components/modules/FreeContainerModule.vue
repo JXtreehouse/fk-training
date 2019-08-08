@@ -3,7 +3,7 @@
     <div class="module-title">自由容器模块</div>
     <div ref="freeContainer" class="free-container-module">
       <template v-for="(m) in modules">
-        <component :is="m.type" :key="m.id"></component>
+        <component :is="m.type" :key="m.id" :id="m.id"></component>
       </template>
     </div>
   </div>
@@ -15,10 +15,13 @@ import InputModule from './InputModule.vue';
 import PictureModule from './PictureModule.vue';
 import Droppable from '../../mixins/Droppable';
 import Resizable from '../../mixins/Resizable';
+import Emitter from '../../mixins/Emitter';
 import { genarateModule } from '../../utils';
 
 export default {
+  name: 'FreeContainerModule',
   mixins: [
+    Emitter,
     Droppable({
       accept: '.u-module-button',
       greedy: true,

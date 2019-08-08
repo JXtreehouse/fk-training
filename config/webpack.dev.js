@@ -44,6 +44,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     hot: true,
+    clientLogLevel: 'warn',
   
   }
 }

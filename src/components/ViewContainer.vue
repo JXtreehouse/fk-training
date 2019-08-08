@@ -27,12 +27,16 @@
 import IosCopyIcon from 'vue-ionicons/dist/ios-copy.vue';
 import Sortable from '../mixins/Sortable';
 import Droppable from '../mixins/Droppable';
+import Emitter from '../mixins/Emitter';
 import FormModule from './modules/FormModule.vue';
 import FreeContainerModule from './modules/FreeContainerModule.vue';
 import { findModuleById,genarateModule } from '../utils';
 
 export default {
-  mixins: [Droppable({
+  name: 'ViewContainer',
+  mixins: [
+    Emitter,
+    Droppable({
     accept: '.u-module-button',
     greedy: true,
     drop: function(event, ui) {
@@ -82,7 +86,20 @@ export default {
     handleThrowModule(m) {
       console.log('throw module');
       this.addModule(m);
+    },
+    handleInfChange({ targetId, inf }) {
+      const target = findModuleById(this.modules, targetId);
+      console.log(target);
+      Object.keys(inf).forEach(key => {
+        target.information[key] = inf[key]
+      })
+      this.$emit('module-change', {
+        target,
+      })
     }
+  },
+  mounted() {
+    this.$on('$inf-change', this.handleInfChange.bind(this));
   }
 }
 </script>

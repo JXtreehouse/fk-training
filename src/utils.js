@@ -13,14 +13,13 @@ export function bindFunctions(obj, context) {
 export function findModuleById(modules, id) {
   for (let i = 0; i <　modules.length; i++) {
     if (modules[i].id === id) return modules[i];
-    if (!modules[i].modules.length) {
+    if (modules[i].modules.length) {
       return findModuleById(modules[i].modules, id);
     }
   }
-  console.log(modules, id);
-  return null;
-}
 
+  throw Error(`can't find module:${id}`);
+}
 export function genarateModule(name) {
   const result = {
     type: name,

@@ -12,9 +12,12 @@
 <script>
 import Draggable from '../../mixins/Draggable';
 import Resizable from '../../mixins/Resizable';
+import Emitter from '../../mixins/Emitter';
 
 export default {
+  name: 'InputModule',
   mixins: [
+    Emitter,
     Draggable({}),
     Resizable(),],
   data() {

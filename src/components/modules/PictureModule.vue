@@ -7,15 +7,16 @@
 <script>
 import Draggable from '../../mixins/Draggable';
 import Resizable from '../../mixins/Resizable';
-import eventBus from '../../eventBus';
+import Emitter from '../../mixins/Emitter';
 
 export default {
+  name: 'PictureModule',
   mixins: [
+    Emitter,
     Draggable({}),
     Resizable({
       stop(event, ui) {
-        console.log(ui);
-        eventBus.$emit('inf-change', { target: this.id, inf: {
+        this.dispatch('ViewContainer', '$inf-change', { targetId: this.id, inf: {
           width: ui.size.width,
           height: ui.size.height,
           left: ui.position.left,

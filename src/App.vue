@@ -2,15 +2,20 @@
   <div class="g-main">
     <div class="g-left">
       <menu-button 
-        v-show="!menuPanelTriggered"
+        v-show="!menuPanel.menuPanelTriggered"
         @click="handleMenuButtonClick"
         />
       <div
-        v-show="menuPanelTriggered"
+        v-show="menuPanel.menuPanelTriggered"
         class="m-menu-panel-container">
         <menu-panel
+          ref="menuPanel"
+          :activeIndex="menuPanel.activeIndex"
+          :target="menuPanel.target"
           @menu-button-click="handleMenuButtonClick"
+          @nav-click="handleNavClick"
           @module-button-click="handleModuleButtonClick"
+          
         >
         </menu-panel>
       </div>
@@ -19,15 +24,17 @@
       <div class="m-container1">
         <view-container
           name="1"
-          @click="handleViewContainerClick"
           ref="viewContainer1"
+          @click="handleViewContainerClick"
+          @module-change="handleViewContainerModuleChange"
         />
       </div>
       <div class="m-container2">
         <view-container 
           name="2"
-          @click="handleViewContainerClick"
           ref="viewContainer2"
+          @click="handleViewContainerClick"
+          @module-change="handleViewContainerModuleChange"
         />
       </div>
     </div>
@@ -42,8 +49,9 @@
 import ViewContainer from './components/ViewContainer.vue';
 import MenuButton from './components/MenuButton.vue';
 import MenuPanel from './components/MenuPanel/index.vue';
-
+import Emitter from './mixins/Emitter';
 export default {
+  mixins: [Emitter],
   components: {
     'view-container': ViewContainer,
     'menu-button': MenuButton,
@@ -52,16 +60,23 @@ export default {
   data() {
     return {
       activeViewContainer: '1',
-      menuPanelTriggered: false,
+      menuPanel: {
+        activeIndex: 0,
+        menuPanelTriggered: false,
+        target: null,
+      }
     }
   },
   methods: {
+    handleNavClick(index) {
+      this.menuPanel.activeIndex = index;
+    },
     handleMenuButtonClick() {
-      this.menuPanelTriggered = !this.menuPanelTriggered;
+      this.menuPanel.menuPanelTriggered = !this.menuPanel.menuPanelTriggered;
     },
     handleViewContainerClick(name) {
       this.activeViewContainer = name;
-      this.menuPanelTriggered = true;
+      this.menuPanel.menuPanelTriggered = true;
     },
     handleModuleButtonClick(name) {
       switch (this.activeViewContainer) {
@@ -74,8 +89,13 @@ export default {
         default:
           break;
       }
+    },
+    handleViewContainerModuleChange(target) {
+      this.menuPanel.activeIndex = 1; //强制切换到信息版
+      this.menuPanel.target = target;
     }
-  }
+  },
+
 }
 </script>
 

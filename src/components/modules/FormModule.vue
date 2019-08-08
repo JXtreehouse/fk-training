@@ -39,7 +39,10 @@
 </template>
 
 <script>
+import Emitter from '../../mixins/Emitter';
 export default {
+  name: 'FormModule',
+  mixins:[Emitter],
   data() {
     return {
       form: {
