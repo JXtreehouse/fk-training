@@ -93,7 +93,7 @@
           </div>
           <div v-show="activeIndex===2" class="u-content3">
             <div class="content3-inner">
-              <module-tree :targetModule="activeModule"></module-tree>
+              <module-tree v-if="activeModule" :targetModule="activeModule"></module-tree>
             </div>
           </div>
         </div>

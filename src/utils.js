@@ -75,6 +75,7 @@ const map =  {
   'input-module': '文本模块',
   'free-container-module': '自由容器模块',
   'form-module': '表单模块',
+  'view-container': '顶层容器',
   width: '模块宽度',
   height: '模块高度',
   left: '模块左距',

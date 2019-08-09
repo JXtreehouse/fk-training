@@ -14,6 +14,7 @@
 import InputModule from './InputModule.vue';
 import PictureModule from './PictureModule.vue';
 import Droppable from '../../mixins/Droppable';
+import Selectable from '../../mixins/Selectable';
 import Resizable from '../../mixins/Resizable';
 import Emitter from '../../mixins/Emitter';
 import { genarateModule } from '../../utils';
@@ -22,6 +23,15 @@ export default {
   name: 'FreeContainerModule',
   mixins: [
     Emitter,
+    Selectable({
+      click(event) {
+        const root = this.$el;
+        this.dispatch('ViewContainer', '$inf-change', { targetId: this.id, inf: {
+          height: root.style.height,
+        }})
+        event.stopPropagation();
+      }
+    }),
     Droppable({
       accept: '.u-module-button',
       greedy: true,

@@ -1,13 +1,13 @@
 <template>
   <div class="u-tree-node">
     <div class="u-tree-item" @click="handleClick">
-      <span style="float-left;">{{ targetModule.type }}</span>
+      <span style="float-left;">{{ targetModule && mapChinese(targetModule.type) }}</span>
       <div class="item-action-btn" style="float:right;">
         <div @click.stop="handleDelete" style="float:right;">
           <md-trash-icon
             :h="'14'"
             :w="'14'" 
-            style="float:right; margin-right: 5px"
+            style="float:right;"
             />
         </div>
         <div @click.stop="handleVisiable" style="float:right;">
@@ -32,6 +32,7 @@
 import MdEyeOffIcon from 'vue-ionicons/dist/md-eye-off.vue';
 import MdEyeIcon from 'vue-ionicons/dist/md-eye.vue';
 import MdTrashIcon from 'vue-ionicons/dist/md-trash.vue'
+import mapChinese from '../utils';
 
 export default {
   name: 'module-tree',
@@ -49,6 +50,9 @@ export default {
     targetModule: Object,
   },
   methods: {
+    mapChinese(str) {
+      return mapChinese(str);
+    },
     handleClick() {
       this.isOpened = !this.isOpened;
     },
