@@ -1,7 +1,7 @@
 <template>
   <div class="u-view-container">
     <button-component
-      v-if="!modules.length"
+      v-if="!rootModule.modules.length"
       class="jz-button-outline-primary u-view-btn"
       @click.stop="onButtonClick">
       <span>
@@ -9,7 +9,7 @@
         添加模块
       </span>
     </button-component>
-    <template v-for="(m) in modules" >
+    <template v-for="(m) in rootModule.modules" >
       <component
         :is="m.type"
         :id="m.id"
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import uniqueString from 'unique-string';
 import IosCopyIcon from 'vue-ionicons/dist/ios-copy.vue';
 import Selectable from '../mixins/Selectable';
 import Sortable from '../mixins/Sortable';
@@ -40,11 +41,7 @@ export default {
     Selectable({
       click(event) {
         event.stopPropagation();
-        this.$emit('module-change', {
-          type: 'view-container',
-          information: {},
-          modules: this.modules
-        })
+        this.$emit('module-change', this.module)
       }
     }),
     Droppable({
@@ -62,7 +59,12 @@ export default {
   },
   data() {
     return {
-      modules: [],
+      rootModule: {
+        type: 'view-container',
+        id: uniqueString(),
+        information: {},
+        modules: []
+      },
     }
   },
   props: {
@@ -79,7 +81,7 @@ export default {
       if (typeof m === 'string') {
         m = genarateModule(m)
       }
-      const target = this.modules;
+      const target = this.rootModule.modules;
       if(m.type === 'free-container-module' || m.type === 'form-module') {
         target.push(m);
       } else if (m.type === 'input-module' || m.type === 'picture-module') {
@@ -91,14 +93,14 @@ export default {
     handleCanAddModule({
       m, targetId
     }) {
-      const target = findModuleById(this.modules, targetId);
+      const target = findModuleById(this.rootModule, targetId);
       target.modules.push(m);
     },
     handleThrowModule(m) {
       this.addModule(m);
     },
     handleInfChange({ targetId, inf }) {
-      const target = findModuleById(this.modules, targetId);
+      const target = findModuleById(this.rootModule, targetId);
       Object.keys(inf).forEach(key => {
         target.information[key] = inf[key]
       })

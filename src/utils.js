@@ -9,17 +9,31 @@ export function bindFunctions(obj, context) {
   })
   return result;
 }
+// export function findModuleById(modules, id) {
+//   for (let i = 0; i <　modules.length; i++) {
+//     if (modules[i].id === id) return modules[i];
+//     if (modules[i].modules.length) {
+//       return findModuleById(modules[i].modules, id);
+//     }
+//   }
 
-export function findModuleById(modules, id) {
-  for (let i = 0; i <　modules.length; i++) {
-    if (modules[i].id === id) return modules[i];
-    if (modules[i].modules.length) {
-      return findModuleById(modules[i].modules, id);
+//   throw Error(`can't find module:${id}`);
+// }
+export function findModuleById(rootModule, id) {
+  const stack = [rootModule];
+  while (stack.length !== 0) {
+    const elem = stack.pop();
+    if(elem.id === id) return elem;
+    else if(elem.modules) {
+      elem.modules.forEach(el => {
+        stack.push(el);
+      });
     }
   }
 
-  throw Error(`can't find module:${id}`);
+  throw Error(`can't find modules ${id}`);
 }
+
 export function genarateModule(name) {
   const result = {
     type: name,
