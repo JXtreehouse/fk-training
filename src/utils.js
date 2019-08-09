@@ -80,7 +80,7 @@ const map =  {
   left: '模块左距',
   top: '模块顶距',
   level: '模块层级',
-  picLink: '图片连接',
+  picLink: '图片链接',
   color: '文本颜色',
   content: '文本内容',
   font: '文本字号',

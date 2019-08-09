@@ -85,7 +85,7 @@
             <template v-for="(entities, index) in activeInformation" >
               <div :key="index">
                 <label :for="entities[0]">{{ entities[1] }}:</label>
-                <input type="text" :name="enetities[0]" :value="entities[2]"/>
+                <input type="text" :name="entities[0]" :value="entities[2]"/>
               </div>
             </template>
           </div>
