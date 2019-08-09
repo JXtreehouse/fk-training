@@ -1,5 +1,5 @@
 <template>
-  <div class="u-container-module">
+  <div class="u-module u-module-container">
     <div class="module-title">表单模块</div>
     <form class="u-form-module">
       <div class="form-title">title</div>

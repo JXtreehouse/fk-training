@@ -82,7 +82,12 @@
             </collapse-panel>
           </div>
           <div v-show="activeIndex===1" class="u-content2">
-            {{ target }}
+            <template v-for="(entities, index) in activeInformation" >
+              <div :key="index">
+                <label :for="entities[0]">{{ entities[1] }}:</label>
+                <input type="text" :name="enetities[0]" :value="entities[2]"/>
+              </div>
+            </template>
           </div>
           <div v-show="activeIndex===2" class="u-content3">content3</div>
         </div>
@@ -98,7 +103,7 @@ import MdImageIcon from 'vue-ionicons/dist/md-image.vue';
 import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue';
 import ModuleButton from './ModuleButton.vue';
 import MdSquareOutlineIcon from 'vue-ionicons/dist/md-square-outline.vue'
-
+import mapChinese from '../../utils';
 
 export default {
   name: 'MenuPanel',
@@ -113,11 +118,22 @@ export default {
   },
   props: {
     activeIndex: Number,
-    target: Object,
+    activeModule: Object,
   },
   data() {
     return {
       modules: ['常用', '互动']
+    }
+  },
+  computed: {
+    activeInformation() {
+      if(!this.activeModule) return [];
+      const result = [];
+      Object.keys(this.activeModule.information).forEach(key => {
+        const ckey = mapChinese(key);
+        result.push([ key, ckey, this.activeModule.information[key] ]);
+      })
+      return result;
     }
   },
   methods: {

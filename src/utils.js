@@ -45,7 +45,7 @@ export function genarateModule(name) {
         height: '',
         left: '',
         top: '',
-        link: '',
+        picLink: '',
       }
       break;
     case 'free-container-module':
@@ -68,4 +68,25 @@ export function genarateModule(name) {
 
   return result;
 
+}
+
+const map =  {
+  'picture-module': '图片模块',
+  'input-module': '文本模块',
+  'free-container-module': '自由容器模块',
+  'form-module': '表单模块',
+  width: '模块宽度',
+  height: '模块高度',
+  left: '模块左距',
+  top: '模块顶距',
+  level: '模块层级',
+  picLink: '图片连接',
+  color: '文本颜色',
+  content: '文本内容',
+  font: '文本字号',
+  backgroundColor: '背景颜色'
+}
+
+export default function mapChinese(str) {
+  return map[str];
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="u-module" data-module-name="input-module" :style="style">
+  <div class="u-module u-module-inline" data-module-name="input-module" :style="style">
     <div 
       class="input-area"
       ref="inputArea"

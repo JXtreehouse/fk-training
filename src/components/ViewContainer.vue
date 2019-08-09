@@ -84,18 +84,14 @@ export default {
       target.modules.push(m);
     },
     handleThrowModule(m) {
-      console.log('throw module');
       this.addModule(m);
     },
     handleInfChange({ targetId, inf }) {
       const target = findModuleById(this.modules, targetId);
-      console.log(target);
       Object.keys(inf).forEach(key => {
         target.information[key] = inf[key]
       })
-      this.$emit('module-change', {
-        target,
-      })
+      this.$emit('module-change', target)
     }
   },
   mounted() {

@@ -1,10 +1,13 @@
 .u-module {
+  
+}
+
+.u-module-inline {
   position: absolute;
 }
 
-.u-container-module {
+.u-module-container {
   background-color: white;
-  // min-height: 200px;
   margin-bottom: 5px;
   overflow: hidden;
   .module-title {
@@ -24,6 +27,11 @@
 
 }
 
-.u-container-module:last-child {
+.u-module-container:last-child {
   margin-bottom: 60px;
+}
+
+.u-module.z-active {
+  border: 1px dashed $primary-color;
+  margin: -1px;
 }

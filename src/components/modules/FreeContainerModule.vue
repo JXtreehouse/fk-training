@@ -1,5 +1,5 @@
 <template>
-  <div class="u-container-module">
+  <div class="u-module u-module-container">
     <div class="module-title">自由容器模块</div>
     <div ref="freeContainer" class="free-container-module">
       <template v-for="(m) in modules">

@@ -11,7 +11,7 @@
         <menu-panel
           ref="menuPanel"
           :activeIndex="menuPanel.activeIndex"
-          :target="menuPanel.target"
+          :activeModule="activeModule"
           @menu-button-click="handleMenuButtonClick"
           @nav-click="handleNavClick"
           @module-button-click="handleModuleButtonClick"
@@ -25,6 +25,7 @@
         <view-container
           name="1"
           ref="viewContainer1"
+          :activeModule="activeModule"
           @click="handleViewContainerClick"
           @module-change="handleViewContainerModuleChange"
         />
@@ -33,6 +34,7 @@
         <view-container 
           name="2"
           ref="viewContainer2"
+          :activeModule="activeModule"
           @click="handleViewContainerClick"
           @module-change="handleViewContainerModuleChange"
         />
@@ -60,10 +62,10 @@ export default {
   data() {
     return {
       activeViewContainer: '1',
+      activeModule: null,
       menuPanel: {
         activeIndex: 0,
         menuPanelTriggered: false,
-        target: null,
       }
     }
   },
@@ -92,7 +94,7 @@ export default {
     },
     handleViewContainerModuleChange(target) {
       this.menuPanel.activeIndex = 1; //强制切换到信息版
-      this.menuPanel.target = target;
+      this.activeModule = target;
     }
   },
 
