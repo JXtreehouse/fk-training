@@ -41,7 +41,7 @@ export default {
     Selectable({
       click(event) {
         event.stopPropagation();
-        this.$emit('module-change', this.module)
+        this.$emit('module-change', this.rootModule)
       }
     }),
     Droppable({
