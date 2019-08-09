@@ -1,0 +1,14 @@
+.u-tree-node {
+  margin-top: 3px;
+  .u-tree-node {
+    margin-left: 10px;
+  }
+}
+
+.u-tree-item {
+  border: 1px solid $light-border-color;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
+}

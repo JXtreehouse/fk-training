@@ -45,5 +45,6 @@ function onInfChange(event, ui) {
     top: root.style.top,
     backgroundColor: root.style.backgroundColor,
   }})
+  event.stopPropagation();
 }
 </script>

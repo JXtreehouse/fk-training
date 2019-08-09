@@ -15,7 +15,6 @@
           @menu-button-click="handleMenuButtonClick"
           @nav-click="handleNavClick"
           @module-button-click="handleModuleButtonClick"
-          
         >
         </menu-panel>
       </div>
@@ -79,6 +78,7 @@ export default {
     handleViewContainerClick(name) {
       this.activeViewContainer = name;
       this.menuPanel.menuPanelTriggered = true;
+      this.menuPanel.activeIndex = 0;
     },
     handleModuleButtonClick(name) {
       switch (this.activeViewContainer) {

@@ -82,27 +82,35 @@
             </collapse-panel>
           </div>
           <div v-show="activeIndex===1" class="u-content2">
-            <template v-for="(entities, index) in activeInformation" >
-              <div :key="index">
-                <label :for="entities[0]">{{ entities[1] }}:</label>
-                <input type="text" :name="entities[0]" :value="entities[2]"/>
-              </div>
-            </template>
+            <div class="content2-inner">
+              <template v-for="(entities, index) in activeInformation" >
+                <div class="item" :key="index">
+                  <label :for="entities[0]">{{ entities[1] }}:</label>
+                  <input-component inputType="text" :name="entities[0]" :value="entities[2]"/>
+                </div>
+              </template>
+            </div>
           </div>
-          <div v-show="activeIndex===2" class="u-content3">content3</div>
+          <div v-show="activeIndex===2" class="u-content3">
+            <div class="content3-inner">
+              <module-tree :targetModule="activeModule"></module-tree>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import StatusBar from './StatusBar.vue';
 import CollapsePanel from './CollapsePanel.vue';
 import MdCreateIcon from 'vue-ionicons/dist/md-create.vue';
 import MdImageIcon from 'vue-ionicons/dist/md-image.vue';
 import MdListBoxIcon from 'vue-ionicons/dist/md-list-box.vue';
-import ModuleButton from './ModuleButton.vue';
 import MdSquareOutlineIcon from 'vue-ionicons/dist/md-square-outline.vue'
+
+import StatusBar from './StatusBar.vue';
+import ModuleButton from './ModuleButton.vue';
+import ModuleTree from '../ModuleTree.vue';
 import mapChinese from '../../utils';
 
 export default {
@@ -110,6 +118,7 @@ export default {
   components: {
     'status-bar': StatusBar,
     'module-button': ModuleButton,
+    'module-tree': ModuleTree,
     'collapse-panel': CollapsePanel,
     'md-create-icon': MdCreateIcon,
     'md-image-icon': MdImageIcon,

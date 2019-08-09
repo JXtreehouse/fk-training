@@ -7,7 +7,16 @@
   box-shadow: 2px 2px 3px 3px $shadow-color;
   overflow: hidden;
 
-  .menu-content {
-    
+}
+
+.content2-inner {
+  padding: 20px;
+
+  .item + .item {
+    margin-top: 10px; 
   }
+}
+
+.content3-inner {
+  padding: 20px;
 }

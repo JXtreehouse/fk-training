@@ -3,7 +3,7 @@
     <button-component
       v-if="!modules.length"
       class="jz-button-outline-primary u-view-btn"
-      @click="onClick">
+      @click.stop="onButtonClick">
       <span>
         <ios-copy-icon class="u-icon-inline u-icon-sp1"></ios-copy-icon>
         添加模块
@@ -25,6 +25,7 @@
 
 <script>
 import IosCopyIcon from 'vue-ionicons/dist/ios-copy.vue';
+import Selectable from '../mixins/Selectable';
 import Sortable from '../mixins/Sortable';
 import Droppable from '../mixins/Droppable';
 import Emitter from '../mixins/Emitter';
@@ -36,6 +37,16 @@ export default {
   name: 'ViewContainer',
   mixins: [
     Emitter,
+    Selectable({
+      click(event) {
+        event.stopPropagation();
+        this.$emit('module-change', {
+          type: 'view-container',
+          information: {},
+          modules: this.modules
+        })
+      }
+    }),
     Droppable({
     accept: '.u-module-button',
     greedy: true,
@@ -61,7 +72,7 @@ export default {
     },
   },
   methods: {
-    onClick() {
+    onButtonClick() {
       this.$emit('click', this.name);
     },
     addModule(m) {

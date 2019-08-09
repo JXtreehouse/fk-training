@@ -1,7 +1,7 @@
 <template>
   <div 
     class="u-module-button"
-    @click="() => onClick()"
+    @click.stop="() => onClick()"
     :data-module-name="name"
     >
     <slot></slot>
